@@ -2,7 +2,7 @@ const path = require("path");
 const knex = require("knex");
 require("dotenv").config();
 const express = require("express");
-const xss = require('xss')
+const { requireAuth } = require('../middleware/jwt-auth')
 const CalculationsService = require("./calculations-service");
 
 const calculationsRouter = express.Router();
@@ -19,6 +19,7 @@ const serializeCalculations = calculation => ({
 
 calculationsRouter
 .route("/")
+.all(requireAuth)
 .get((req, res, next) => {
   const knexInstance = req.app.get("db");
   CalculationsService.getAllCalculations(knexInstance)
@@ -28,16 +29,14 @@ calculationsRouter
     })
     .catch(next);
 })
-.post(jsonParser, (req, res, next) => {
+.post(requireAuth, jsonParser, (req, res, next) => {
     const {
         id,
-        user_id,
         networth_total,
         networth_total_value
     } = req.body;
     const newCalculation = {
         id,
-        user_id,
         networth_total,
         networth_total_value
     };
@@ -48,6 +47,8 @@ calculationsRouter
         });
       }
     }
+    calculations.user_id = req.user.id
+
 
     CalculationsService.insertCalculation(req.app.get("db"), newCalculation)
       .then(calculation => {
@@ -60,6 +61,7 @@ calculationsRouter
   });
 calculationsRouter
   .route("/:calculationsid")
+  .all(requireAuth)
   .all((req, res, next) => {
     CalculationsService.getById(req.app.get("db"), req.params.calculationsid)
       .then(calculation => {
@@ -76,14 +78,14 @@ calculationsRouter
   .get((req, res, next) => {
     res.json(serializeCalculations(res.calculation));
   })
-  .delete((req, res, next) => {
+  .delete(requireAuth, (req, res, next) => {
     CalculationsService.deleteCalculation(req.app.get("db"), req.params.calculationsid)
       .then(numRowsAffected => {
         res.status(204).end();
       })
       .catch(next);
   })
-  .put(jsonParser,(req,res,next)=>{
+  .put(requireAuth,jsonParser,(req,res,next)=>{
     const {
         id,
         user_id,
