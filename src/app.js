@@ -36,9 +36,10 @@ app.get('/', (req, res) => {
 
 app.use("/api/advice", adviceRouter)
 
-app.use("/api/calculations", calculationsRouter)
 app.use("/api/auth", authRouter)
 app.use("/api/users", usersRouter)
+app.use("/api/calculations", calculationsRouter)
+
 
 app.use(errorHandler)
 
