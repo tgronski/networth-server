@@ -23,7 +23,6 @@ authRouter
                            return res.status(400).json({
                              error: 'Incorrect user_name or password',
                            })
-                           req.user = user
                   return AuthService.comparePasswords(loginUser.password, dbUser.password)
          .then(compareMatch => {
            if (!compareMatch)
