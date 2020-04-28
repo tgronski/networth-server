@@ -1,8 +1,12 @@
 const CalculationsService = {
-    getAllCalculations(knex) {
-      return knex.select("*").from("networth_calculations");
-    },
-    getById(knex, calculationsid) {
+  getCalculations(knex, user_id) {
+    return knex
+      .from("networth_calculations")
+      .select("*")
+      .where("user_id", user_id)
+      .first();
+  },  
+  getById(knex, calculationsid) {
       return knex
         .from("networth_calculations")
         .select("*")
@@ -18,17 +22,11 @@ const CalculationsService = {
             return rows[0];
           });
       },
-      deleteStore(knex, calculationsid) {
+      deleteCalculation(knex, calculationsid) {
         return knex("networth_calculations")
           .where("calculationsid", calculationsid)
           .delete();
-      },
-      updateStore(knex, calculationsid, editCalculation) {
-        return knex("networth_calculations")
-          .where("calculationsid", calculationsid)
-          .update(editCalculation, returning=true)
-          .returning("*")
-      },
+      }
   };
   
   module.exports = CalculationsService;

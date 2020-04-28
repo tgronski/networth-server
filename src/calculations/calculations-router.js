@@ -21,7 +21,9 @@ calculationsRouter
 .route("/")
 .all(requireAuth)
 .get((req, res, next) => {
-  const knexInstance = req.app.get("db");
+  user_id=req.user.id
+  const knexInstance = req.app.get("db",user_id);
+  
   CalculationsService.getAllCalculations(knexInstance)
 
     .then(results => {
@@ -31,14 +33,20 @@ calculationsRouter
 })
 .post(requireAuth, jsonParser, (req, res, next) => {
     const {
-        id,
+        loans,
+        credits,
+        savings, 
+        investments,
         networth_total,
         networth_total_value
     } = req.body;
     const newCalculation = {
-        id,
-        networth_total,
-        networth_total_value
+      loans,
+      credits,
+      savings, 
+      investments,
+      networth_total,
+      networth_total_value
     };
     for (const [key, value] of Object.entries(newCalculation)) {
       if (value == null) {
