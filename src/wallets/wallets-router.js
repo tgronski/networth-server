@@ -6,14 +6,6 @@ const { requireAuth } = require('../middleware/jwt-auth')
 const WalletsService = require("./wallets-service");
 
 const walletsRouter = express.Router();
-const jsonParser = express.json();
-
-const serializeWallets = wallet => ({
-  walletsid: wallet.id,
-  walletsuserid: wallet.user_id,
-  wallet_categories: wallet.wallet_categories,
-  assets: wallet.assets,
-});
 
 
 walletsRouter
@@ -35,4 +27,4 @@ walletsRouter
 
 
 
-module.exports = calculationsRouter;
+module.exports = walletsRouter;
