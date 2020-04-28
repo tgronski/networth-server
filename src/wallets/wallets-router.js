@@ -21,8 +21,8 @@ walletsRouter
 .all(requireAuth)
 .get((req, res, next) => {
   user_id = req.user.id
-  const knexInstance = req.app.get("db", user_id );
-  WalletsService.getById(knexInstance)
+  const knexInstance = req.app.get("db" );
+  WalletsService.getWallets(knexInstance)
   
 
     .then(results => {

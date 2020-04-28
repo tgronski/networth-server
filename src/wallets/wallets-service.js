@@ -1,11 +1,8 @@
 const WalletsService = {
-    getById(knex, user_id ) {
+    getWallets(knex ) {
       return knex
-        .from("networth_wallet")
         .select("*")
-        // .where("user_id", user_id)
-        // .first();
-
+        .from("networth_wallet")
   }
 }
   
