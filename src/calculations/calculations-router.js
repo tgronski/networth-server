@@ -13,7 +13,6 @@ const serializeCalculations = calculation => ({
   calculationsuserid: calculation.user_id,
   total: calculation.networth_total,
   total_value: calculation.networth_total_value,
-  calculationsdate: calculation.date_created
 });
 
 
@@ -55,7 +54,7 @@ calculationsRouter
         });
       }
     }
-    user_id = req.user.id
+    newCalculation.user_id = req.user.id
 
 
     CalculationsService.insertCalculation(req.app.get("db"), newCalculation)
