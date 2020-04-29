@@ -22,7 +22,7 @@ calculationsRouter
 .all(requireAuth)
 .get((req, res, next) => {
   user_id=req.user.id
-  const knexInstance = req.app.get("db",user_id);
+  const knexInstance = req.app.get("db");
   
   CalculationsService.getAllCalculations(knexInstance)
 
