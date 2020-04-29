@@ -74,7 +74,7 @@ calculationsRouter
       .then(calculation => {
         if (!calculation) {
           return res.status(404).json({
-            error: { message: `Advice doesn't exist` }
+            error: { message: `Entry doesn't exist` }
           });
         }
         res.calculation = calculation;

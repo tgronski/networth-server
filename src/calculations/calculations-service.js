@@ -11,7 +11,6 @@ const CalculationsService = {
         .from("networth_calculations")
         .select("*")
         .where("id", calculationsid)
-        .first();
     },
     insertCalculation(knex, newCalculation) {
         return knex

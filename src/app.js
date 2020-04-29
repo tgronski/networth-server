@@ -10,6 +10,7 @@ const calculationsRouter = require('./calculations/calculations-router')
 const authRouter = require('./auth/auth-router')
 const usersRouter = require('./users/users-router')
 const walletsRouter = require("./wallets/wallets-router")
+const goalsRouter = require("./goals/goals-router")
 const app = express()
 
 app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common', {
@@ -40,6 +41,7 @@ app.use("/api/auth", authRouter)
 app.use("/api/users", usersRouter)
 app.use("/api/calculations", calculationsRouter)
 app.use("/api/wallets", walletsRouter)
+app.use("/api/goals", goalsRouter)
 
 
 app.use(errorHandler)
