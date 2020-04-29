@@ -24,7 +24,7 @@ calculationsRouter
   user_id=req.user.id
   const knexInstance = req.app.get("db");
   
-  CalculationsService.getAllCalculations(knexInstance)
+  CalculationsService.getCalculations(knexInstance,user_id)
 
     .then(results => {
       res.status(200).json(results);

@@ -1,9 +1,9 @@
 const CalculationsService = {
-  getCalculations(knex) {
+  getCalculations(knex,user_id) {
     return knex
       .from("networth_calculations")
       .select("*")
-      // .where("user_id", user_id)
+      .where("user_id", user_id)
       .first();
   },  
   getById(knex, calculationsid) {
