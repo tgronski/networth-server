@@ -20,10 +20,9 @@ calculationsRouter
 .route("/")
 .all(requireAuth)
 .get((req, res, next) => {
-  user_id=req.user.id
   const knexInstance = req.app.get("db");
-  
-  CalculationsService.getCalculations(knexInstance,user_id)
+  let user = req.user
+  CalculationsService.getCalculations(knexInstance,user.user_id)
 
     .then(results => {
       res.status(200).json(results);
@@ -91,31 +90,6 @@ calculationsRouter
         res.status(204).end();
       })
       .catch(next);
-  })
-  .put(requireAuth,jsonParser,(req,res,next)=>{
-    const {
-        id,
-        user_id,
-        networth_total,
-        networth_total_value} = req.body
-    const today= new Date();
-    const date_created=today.getFullYear()+'/'+(today.getMonth()+1)+'/'+(today.getDate()-1);
-    const editCalculation = {
-        id,
-        user_id,
-        networth_total,
-        networth_total_value, 
-        date_created}
-    
-    for( const [key,value] of Object.entries(editCalculation))
-    if(value==null)
-    res.status(400).json({error:{message: `Missing ${key}`}})
-
-    CalculationsService.updateCalculation(req.app.get("db"), req.params.calculationsid, editCalculation)
-    .then(editedCalculation=>{
-      res.status(200).json(serializeCalculations(editedCalculation[0]))
-    })
-    .catch(next);
   })
 
 
