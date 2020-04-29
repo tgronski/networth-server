@@ -24,7 +24,7 @@ const CalculationsService = {
       },
       deleteCalculation(knex, calculationsid) {
         return knex("networth_calculations")
-          .where("calculationsid", calculationsid)
+          .where("id", calculationsid)
           .delete();
       }
   };
