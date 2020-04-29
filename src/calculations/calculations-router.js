@@ -33,18 +33,18 @@ calculationsRouter
 })
 .post(requireAuth, jsonParser, (req, res, next) => {
     const {
-        loans,
-        credits,
-        savings, 
-        investments,
+        networth_loans,
+        networth_credits,
+        networth_savings, 
+        networth_investments,
         networth_total,
         networth_total_value
     } = req.body;
     const newCalculation = {
-      loans,
-      credits,
-      savings, 
-      investments,
+      networth_loans,
+      networth_credits,
+      networth_savings, 
+      networth_investments,
       networth_total,
       networth_total_value
     };
@@ -55,7 +55,7 @@ calculationsRouter
         });
       }
     }
-    calculations.user_id = req.user.id
+    user_id = req.user.id
 
 
     CalculationsService.insertCalculation(req.app.get("db"), newCalculation)
