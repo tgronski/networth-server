@@ -20,7 +20,7 @@ const GoalsService = {
               return rows[0];
             });
         },
-        deleteGoal(knex, id) {
+        deleteGoals(knex, id) {
           return knex("networth_goals")
             .where("id", id)
             .delete();
