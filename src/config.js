@@ -3,8 +3,7 @@ module.exports = {
     NODE_ENV: process.env.NODE_ENV,
     DATABASE_URL: process.env.DATABASE_URL,
     JWT_SECRET: process.env.JWT_SECRET || 'change-this-secret',
-    // JWT_EXPIRY: process.env.JWT_EXPIRY || '900000',
-    JWT_EXPIRY: process.env.JWT_EXPIRY || '90',
+    JWT_EXPIRY: process.env.JWT_EXPIRY || '900000',
 
 
 }
