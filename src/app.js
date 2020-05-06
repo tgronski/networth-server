@@ -20,23 +20,12 @@ app.use(cors())
 app.use(helmet())
 app.use(express.json());
 
-// app.use(function validateBearerToken(req, res, next) {
-//   const apiToken = process.env.API_TOKEN
-//   const authToken = req.get('Authorization')
-//   console.log(apiToken)
-//   console.log(authToken)
-//   if (!authToken || authToken.split(' ')[1] !== apiToken) {
-//     return res.status(401).json({ error: `${apiToken} ${authToken} Unauthorized request` })
-//   }
-//     next()
-//   })
 
 app.get('/', (req, res) => {
   res.send('Hello, world!')
 })
 
 app.use("/api/advice", adviceRouter)
-
 app.use("/api/auth", authRouter)
 app.use("/api/users", usersRouter)
 app.use("/api/calculations", calculationsRouter)
