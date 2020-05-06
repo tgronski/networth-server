@@ -6,6 +6,7 @@ CREATE TABLE networth_wallet (
   wallet_categories TEXT,
   assets BOOLEAN,
   date_created TIMESTAMP DEFAULT now() NOT NULL,
+  icon TEXT,
   user_id INTEGER
         REFERENCES networth_users(id) ON DELETE CASCADE
 );
