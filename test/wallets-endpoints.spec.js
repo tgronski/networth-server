@@ -29,7 +29,6 @@ describe("Wallets Endpoints", function() {
     db.raw("TRUNCATE networth_wallet CASCADE")
   );
 
-
   describe(`GET /api/wallets`, () => {
     context(`Given no wallets`, () => {
       it(`responds with 401 and an error`, () => {
@@ -47,11 +46,10 @@ describe("Wallets Endpoints", function() {
       beforeEach("insert wallets", () => {
         return db.into("networth_wallet").insert(testWallets);
       });
-
-      it("responds with 401 and all of the wallets items", () => {
+      it('responds with 401 and and error', () => { 
         return supertest(app)
           .get("/api/wallets")
-          .expect(401);
+          .expect(401, {error: 'Missing bearer token'});
       });
     });
   });

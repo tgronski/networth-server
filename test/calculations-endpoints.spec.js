@@ -31,23 +31,23 @@ describe("Calculations Endpoints", function() {
 
   describe(`GET /api/calculations`, () => {
     context(`Given no calculations`, () => {
-      it(`responds with 401 and an error`, () => {
+      it(`responds with 401 (unauthorized)`, () => {
         return supertest(app)
           .get("/api/calculations")
-          .expect(401, {error: 'Missing bearer token'});
+          .expect(401);
       });
     });
   });
 
   describe(`GET /api/calculations`, () => {
     context("Given there are calculations items in the database", () => {
-      const testCalculations = makeCalculationsArray(testCalculations);
+      const testCalculations = makeCalculationsArray(testUsers);
 
       beforeEach("insert calculations", () => {
         return db.into("networth_calculations").insert(testCalculations);
       });
 
-      it("responds with 401 and all of the calculations items", () => {
+      it("responds with 401 (unauthorized)", () => {
         return supertest(app)
           .get("/api/calculations")
           .expect(401);

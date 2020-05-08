@@ -43,7 +43,7 @@ describe("Advice Endpoints", function() {
       it("responds with 200 and all of the advice items", () => {
         return supertest(app)
           .get("/api/advice")
-          .expect(200, testAdvice);
+          .expect(200, testAdvice)
       });
     });
   });

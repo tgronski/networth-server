@@ -12,7 +12,6 @@ function makeUsersArray(){
 }
 
 function makeWalletsArray(){
-
     
     return [
         {
@@ -32,13 +31,12 @@ function makeAdviceArray(){
             id: 1,
             category: 1,
             content: 'www.sofi.com',
-            date_created: new Date('2029-01-22T16:28:32.615Z')
             
         }
     ]
 }
 
-function makeGoalsArray(users){
+function makeGoalsArray(testUsers){
 
     
     return [
@@ -46,7 +44,7 @@ function makeGoalsArray(users){
             id: 1,
             goal_value: 100, 
             goal_name:  'Buy a home',
-            user_id: 1
+            user_id: testUsers[0].id
             
         }
     ]
@@ -57,10 +55,9 @@ function makeExpectedWallet(users, wallet) {
       .find(user => user.id === wallet.wallet_id)
   
     return {
-        id: wallet.id,
         wallet_categories: wallet.wallet_categories,
         assets: wallet.assets, 
-        date_created:  new Date('2029-01-22T16:28:32.615Z'),
+        date_created: new Date(),
         user_id: null
       }
 }
@@ -89,16 +86,15 @@ function makeExpectedWallet(users, wallet) {
 
 function makeExpectedCalculations(users, calculations) {
     const calculations = users
-      .find(user => user.id === calculations.calculation_id)
+      .find(user => user.id === calculations.calculations_id)
   
     return {
-        id: 1,
-        networth_credits: 100,
-        networth_investments: 0 ,
-        networth_savings:0,
-        networth_loans:0,
-        networth_total: '$100.00',
-        networth_total_value: 100,
+        networth_credits: calculations.networth_credits,
+        networth_investments: calculations.networth_investments ,
+        networth_savings:calculations.networth_savings,
+        networth_loans:calculations.networth_loans,
+        networth_total: calculations.networth_total,
+        networth_total_value: calculations.networth_total_value,
         user_id: 1
       }
 }
@@ -118,5 +114,6 @@ module.exports = {
     makeExpectedWallet,
     makeWalletsFixtures,
     makeCalculationsArray,
+    makeExpectedCalculations,
     makeCalculationsFixtures
 }
