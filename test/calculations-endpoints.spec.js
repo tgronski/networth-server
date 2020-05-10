@@ -2,19 +2,17 @@ const { expect } = require("chai");
 const knex = require("knex");
 const app = require("../src/app");
 const { makeCalculationsArray } = require("./test-helpers");
-const helpers = require('./test-helpers')
+const helpers = require("./test-helpers");
 
-describe("Calculations Endpoints", function() {
+describe("Calculations Endpoints", function () {
   let db;
 
-  const { testUsers,
-    testCalculations  
-    } = helpers.makeCalculationsFixtures()
+  const { testUsers, testCalculations } = helpers.makeCalculationsFixtures();
 
   before("make knex instance", () => {
     db = knex({
       client: "pg",
-      connection: "postgresql://networth:tessg@localhost/networth"
+      connection: "postgresql://networth:tessg@localhost/networth",
     });
     app.set("db", db);
   });
@@ -24,17 +22,12 @@ describe("Calculations Endpoints", function() {
     db.raw("TRUNCATE networth_calculations CASCADE")
   );
 
-  afterEach("cleanup", () =>
-    db.raw("TRUNCATE networth_calculations CASCADE")
-  );
-
+  afterEach("cleanup", () => db.raw("TRUNCATE networth_calculations CASCADE"));
 
   describe(`GET /api/calculations`, () => {
     context(`Given no calculations`, () => {
       it(`responds with 401 (unauthorized)`, () => {
-        return supertest(app)
-          .get("/api/calculations")
-          .expect(401);
+        return supertest(app).get("/api/calculations").expect(401);
       });
     });
   });
@@ -48,9 +41,7 @@ describe("Calculations Endpoints", function() {
       });
 
       it("responds with 401 (unauthorized)", () => {
-        return supertest(app)
-          .get("/api/calculations")
-          .expect(401);
+        return supertest(app).get("/api/calculations").expect(401);
       });
     });
   });

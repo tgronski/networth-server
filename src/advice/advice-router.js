@@ -7,19 +7,18 @@ const AdviceService = require("./advice-service");
 const adviceRouter = express.Router();
 const jsonParser = express.json();
 
-const serializeAdvice = advice => ({
+const serializeAdvice = (advice) => ({
   adviceid: advice.id,
   advicetitle: advice.title,
   advicecontent: advice.content,
-  advicedate: advice.date_created
+  advicedate: advice.date_created,
 });
-
 
 adviceRouter.route("/").get((req, res, next) => {
   const knexInstance = req.app.get("db");
   AdviceService.getAllAdvice(knexInstance)
 
-    .then(results => {
+    .then((results) => {
       res.status(200).json(results);
     })
     .catch(next);
@@ -29,10 +28,10 @@ adviceRouter
   .route("/:adviceid")
   .all((req, res, next) => {
     AdviceService.getById(req.app.get("db"), req.params.adviceid)
-      .then(advice => {
+      .then((advice) => {
         if (!advice) {
           return res.status(404).json({
-            error: { message: `Advice doesn't exist` }
+            error: { message: `Advice doesn't exist` },
           });
         }
         res.advice = advice;

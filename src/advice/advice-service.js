@@ -8,7 +8,7 @@ const AdviceService = {
       .select("*")
       .where("id", adviceid)
       .first();
-  }
+  },
 };
 
 module.exports = AdviceService;

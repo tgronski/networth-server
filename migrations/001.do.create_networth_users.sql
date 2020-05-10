@@ -1,6 +1,4 @@
 DROP TABLE IF EXISTS networth_users;
-
-
 CREATE TABLE networth_users (
   id SERIAL PRIMARY KEY,
   user_name TEXT NOT NULL UNIQUE,
@@ -10,6 +8,3 @@ CREATE TABLE networth_users (
   date_created TIMESTAMPTZ NOT NULL DEFAULT now(),
   date_modified TIMESTAMPTZ
 );
-
-
-
