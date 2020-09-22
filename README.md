@@ -1,26 +1,300 @@
-# Express Boilerplate!
+Fisave 
+### [Link to Web App](https://networth-client.now.sh/main)
 
-This is a boilerplate project used for starting new projects!
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Set up
+### Summary: 
+Fisave is a full stack web app for helping people track their networth over time. 
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+### Technologies Used: 
+Front-end: 
+React 
+Javascript
+HTML/CSS
+D3.js for data visualizations
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+Back-end: 
+Node
+Express
+PostgreSQL
 
-## Scripts
+### Sample Login Credentials: 
+user name: TestLogin
+password: TestLogin1!
 
-Start the application `npm start`
+Use the homepage as a trial of the service before committing to a log in. 
+Fill in any of the options on the form & click submit to see what your current networth is. 
 
-Start nodemon for the application `npm run dev`
 
-Run the tests `npm test`
+![homepage](Fisave-homepage.png)
 
-## Deploying
+### Endpoints: 
+URL
 
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+
+/api/advice
+
+Method:
+
+GET
+
+URL Params
+
+None
+
+Data Params
+
+None
+
+Success Response:
+
+Code: 200
+Content: [ ]
+
+URL
+
+
+/api/advice:adviceid
+
+Method:
+
+GET
+
+URL Params
+
+adviceid=[integer]
+
+Data Params
+
+None
+
+Success Response:
+
+Code: 200
+Content: [ ]
+
+Code: 404 NOT FOUND
+{"error":{"message":"Advice doesn't exist"}}
+
+____________________________________________
+
+
+URL
+
+
+/api/calculations
+
+Method:
+
+GET
+
+URL Params
+
+None
+
+login-credentials (username & password -strings)
+
+None
+
+Success Response:
+
+Code: 200
+Content: [ ]
+
+
+/api/calculations
+
+Method:
+
+POST
+
+URL Params
+
+None
+
+login-credentials (username & password -strings)
+
+None
+Success Response:
+
+Code: 201 & URl
+
+Code: 400 NOT FOUND
+{"error":{"message":"Missing {key} in request"}}
+
+
+
+URL
+
+
+/api/calculations/calculationsid
+
+Method:
+
+GET
+
+URL Params
+
+calculationsid=[integer]
+
+Data Params
+
+login-credentials (username & password -strings)
+
+
+Success Response:
+
+Code: 200
+Content: [ ]
+
+Code: 404 NOT FOUND
+{"error":{"message":"Calculation doesn't exist"}}
+
+DELETE
+
+URL Params
+
+calculationsid=[integer]
+
+Data Params
+
+login-credentials (username & password -strings)
+
+
+Success Response:
+
+Code: 204
+Content: [ ]
+
+_____________________________________
+
+URL
+
+
+/api/goals
+
+Method:
+
+GET
+
+URL Params
+
+None
+
+login-credentials (username & password -strings)
+
+None
+
+Success Response:
+
+Code: 200
+Content: [ ]
+
+
+/api/goals
+
+Method:
+
+POST
+
+URL Params
+
+None
+
+login-credentials (username & password -strings)
+
+None
+Success Response:
+
+Code: 201 & URl
+
+Code: 400 NOT FOUND
+{"error":{"message":"Missing {key} in request"}}
+
+
+URL
+
+
+/api/goals/id
+
+Method:
+
+GET
+
+URL Params
+
+id=[integer]
+
+Data Params
+
+login-credentials (username & password -strings)
+
+
+Success Response:
+
+Code: 200
+Content: [ ]
+
+Code: 404 NOT FOUND
+{"error":{"message":"Entry doesn't exist"}}
+
+DELETE
+
+URL Params
+
+id=[integer]
+
+Data Params
+
+login-credentials (username & password -strings)
+
+
+Success Response:
+
+Code: 204
+
+_________________________________________
+
+/api/wallets
+
+Method:
+
+GET
+
+URL Params
+
+None
+
+Data Params
+
+login-credentials (username & password -strings)
+
+Success Response:
+
+Code: 200
+Content: [ ]
+
+_________________________________________
+
+/api/users
+
+Method:
+
+POST
+
+URL Params
+
+fullname, username, password=[str]
+
+Data Params
+
+None
+
+Success Response:
+
+Code: 201 & URL
+
+Code: 400 NOT FOUND
+{"error":{"message":"Missing {key} in request"}}
+
+
